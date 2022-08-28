@@ -25,3 +25,16 @@ alert(texto)
 */
 
 // Algoritmo de Hola
+// Repite la palabra hola tantas veces diga el numero ingresado
+/*
+let number = Number(prompt("Ingrese un número."))
+let hola = "Hola"
+let vacio = ""
+
+for (let i = 0; i < number; i++) {
+  vacio += hola
+  vacio += " "
+}
+
+alert(vacio)
+*/
