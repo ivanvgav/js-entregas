@@ -1,14 +1,15 @@
 // Loops o ciclos
 // Favor de descomentar las partes del código para probar cada uno de los algoritmos
 
-// Algoritmo para encontrar el sucesor de un número 0 a 10
+// Algoritmo para encontrar el sucesor de un número
 /*
-let number = Number(prompt("Ingrese un número del 0 al 10. Se le sumará el sucesor hasta llegar a 10."))
+let number = Number(prompt("Ingrese un número."))
 
-for(let i = 1; i <= 10 ; i++) {
-  let resultado = number + i
+do {
+  let sucesor = 1
+  let resultado = number + sucesor
   alert(`El sucesor es: ${resultado}`)
-}
+} while (resultado < number);
 */
 
 //Algoritmo para escribir una concatenación de strings
