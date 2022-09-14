@@ -2,7 +2,7 @@
 // Creación de objetos
 
 alert(
-  "Buenas. Entro a este sitio a comprar productos tecnológicos. Por favor siga las instrucciones. Muchas gracias."
+  "Buenas. Entró a este sitio a comprar productos tecnológicos. Por favor siga las instrucciones. Muchas gracias."
 );
 
 const products = [
@@ -14,37 +14,37 @@ const products = [
   { id: 6, name: "Cargador", price: 3000, stock: true, quantity: 10 },
 ];
 
-const services = [
-  {
-    id: 90,
-    name: "Limpieza de equipo",
-    price: 5000,
-    responsable: "Mario",
-    time: 2,
-  },
-  {
-    id: 91,
-    name: "Reformateo de PC",
-    price: 3000,
-    responsable: "Laura",
-    time: 2,
-  },
-  {
-    id: 92,
-    name: "Armado de servidor",
-    price: 25000,
-    responsable: "Rubén",
-    time: 5,
-  },
-  {
-    id: 93,
-    name: "Colocación de pasta",
-    price: 2000,
-    responsable: "Mario",
-    time: 2,
-  },
-  { id: 94, name: "Armado de PC", price: 10000, responsable: "Laura", time: 2 },
-];
+// const services = [
+//   {
+//     id: 90,
+//     name: "Limpieza de equipo",
+//     price: 5000,
+//     responsable: "Mario",
+//     time: 2,
+//   },
+//   {
+//     id: 91,
+//     name: "Reformateo de PC",
+//     price: 3000,
+//     responsable: "Laura",
+//     time: 2,
+//   },
+//   {
+//     id: 92,
+//     name: "Armado de servidor",
+//     price: 25000,
+//     responsable: "Rubén",
+//     time: 5,
+//   },
+//   {
+//     id: 93,
+//     name: "Colocación de pasta",
+//     price: 2000,
+//     responsable: "Mario",
+//     time: 2,
+//   },
+//   { id: 94, name: "Armado de PC", price: 10000, responsable: "Laura", time: 2 },
+// ];
 
 let carrito = [];
 let carritoPrice = 0;
@@ -64,42 +64,30 @@ function fullCarrito() {
   }
 }
 
-// function showProducts() {
-//   for (let i = 0; i <= products.length; i++) {
-//     menu += products.forEach(makeList1);
-//     console.log(menu);
-//   }
-//   return menu;
-// }
-// showProducts();
-console.log(products.forEach(makeList1));
-prompt(menu);
-// function showProducts1() {
-//   let menu = products[].forEach(makeList);
-//   prompt(menu);
-// }
-// showProducts();
+function showProducts() {
+  menu = "Seleccione el producto que desea comprar: \n";
+  for (const product of products) {
+    menu +=
+      product.id.toString() +
+      " " +
+      product.name +
+      " " +
+      "$" +
+      product.price.toString() +
+      "\n";
+  }
+  prompt(menu);
+}
+showProducts();
 
-// function makeList(objeto) {
-//   idstring = objeto.id.toString();
-//   pricestring = objeto.price.toString();
-//   list += idstring + objeto.name + pricestring + "\n";
-//   console.log(list);
+function addCarrito() {}
+
+// function makeList1(obj) {
+//   idstring = obj.id.toString();
+//   pricestring = obj.price.toString();
+//   list += idstring + " " + obj.name + " " + pricestring + "\n";
 //   return list;
 // }
-
-function makeList1(product) {
-  idstring = product.id.toString();
-  pricestring = product.price.toString();
-  list += idstring + product.name + pricestring + "\n";
-  return list;
-}
-// makeList1(products[0]);
-// Mostrar la suma total del carrito
-// carrito.forEach((product) => {
-//   (sumTotal += product), price;
-// });
-// console.log(sumTotal);
 
 // let searchCarritoProduct = carrito.find((product) => product.price === "Product Name")
 // Como joroca tengo que hacer para mandar una opción a esto
