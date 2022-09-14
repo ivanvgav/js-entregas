@@ -6,12 +6,12 @@ alert(
 );
 
 const products = [
-  { id: 1, name: "Impresora", price: 9000, stock: true, quantity: 10 },
-  { id: 2, name: "Mouse", price: 1000, stock: true, quantity: 10 },
-  { id: 3, name: "Teclado", price: 4000, stock: true, quantity: 10 },
-  { id: 4, name: "Monitor", price: 19000, stock: true, quantity: 10 },
-  { id: 5, name: "Gabinete", price: 3000, stock: true, quantity: 10 },
-  { id: 6, name: "Cargador", price: 3000, stock: true, quantity: 10 },
+  { id: 1, name: "Impresora", price: 9000 },
+  { id: 2, name: "Mouse", price: 1000 },
+  { id: 3, name: "Teclado", price: 4000 },
+  { id: 4, name: "Monitor", price: 19000 },
+  { id: 5, name: "Gabinete", price: 3000 },
+  { id: 6, name: "Cargador", price: 3000 },
 ];
 
 // const services = [
@@ -56,6 +56,7 @@ let menu = "";
 
 function emptyCarrito() {
   return carrito;
+  alert("Se ha vaciado el carrito.");
 }
 
 function fullCarrito() {
@@ -65,7 +66,7 @@ function fullCarrito() {
 }
 
 function showProducts() {
-  menu = "Seleccione el producto que desea comprar: \n";
+  menu = "Seleccione el número del producto que desea comprar: \n";
   for (const product of products) {
     menu +=
       product.id.toString() +
@@ -76,11 +77,26 @@ function showProducts() {
       product.price.toString() +
       "\n";
   }
-  prompt(menu);
+  option = prompt((menu += "Escriba ESC para salir"));
+  if (option == "ESC" || option == "esc") {
+    close();
+  } else {
+    addCarrito(option);
+  }
 }
 showProducts();
 
-function addCarrito() {}
+function addCarrito(option) {
+  carrito = products.slice(option - 1, option);
+  alert(
+    `Se añadió el producto ${carrito[0].name} con el precio de $ ${carrito[0].price}`
+  );
+  console.log(carrito);
+}
+
+function close() {
+  alert("Muchas gracias por su tiempo, vuelva pronto.");
+}
 
 // function makeList1(obj) {
 //   idstring = obj.id.toString();
