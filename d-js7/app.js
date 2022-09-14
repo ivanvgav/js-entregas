@@ -49,6 +49,9 @@ const services = [
 let carrito = [];
 let carritoPrice = 0;
 
+let list = "";
+let menu = "";
+
 // Funciones
 
 function emptyCarrito() {
@@ -61,24 +64,48 @@ function fullCarrito() {
   }
 }
 
-function showProducts() {
-  products.forEach(name, price);
+// function showProducts() {
+//   for (let i = 0; i <= products.length; i++) {
+//     menu += products.forEach(makeList1);
+//     console.log(menu);
+//   }
+//   return menu;
+// }
+// showProducts();
+console.log(products.forEach(makeList1));
+prompt(menu);
+// function showProducts1() {
+//   let menu = products[].forEach(makeList);
+//   prompt(menu);
+// }
+// showProducts();
+
+// function makeList(objeto) {
+//   idstring = objeto.id.toString();
+//   pricestring = objeto.price.toString();
+//   list += idstring + objeto.name + pricestring + "\n";
+//   console.log(list);
+//   return list;
+// }
+
+function makeList1(product) {
+  idstring = product.id.toString();
+  pricestring = product.price.toString();
+  list += idstring + product.name + pricestring + "\n";
+  return list;
 }
-
-console.log(showProducts());
-
+// makeList1(products[0]);
 // Mostrar la suma total del carrito
-carrito.forEach((product) => {
-  (sumTotal += product), price;
-});
-console.log(sumTotal);
+// carrito.forEach((product) => {
+//   (sumTotal += product), price;
+// });
+// console.log(sumTotal);
 
 // let searchCarritoProduct = carrito.find((product) => product.price === "Product Name")
 // Como joroca tengo que hacer para mandar una opción a esto
 
 // Clases
 
-/*
 class user {
   constructor(name, password) {
     this.name = name;
@@ -105,4 +132,3 @@ class service {
     this.time = time;
   }
 }
-*/
