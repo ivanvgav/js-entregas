@@ -47,7 +47,10 @@ const products = [
 // ];
 
 let carrito = [];
-let carritoPrice = 0;
+let carritoprice = 0;
+let totalcarrito = carrito.reduce((acc, carrito) => {
+  return acc + carrito.price;
+}, 0);
 
 let list = "";
 let menu = "";
@@ -60,7 +63,7 @@ function emptyCarrito() {
 }
 
 function fullCarrito() {
-  if (carritoPrice > 20000) {
+  if (carritoprice > 20000) {
     return "Tu carrito se encuentra lleno";
   }
 }
@@ -87,11 +90,11 @@ function showProducts() {
 showProducts();
 
 function addCarrito(option) {
-  carrito = products.slice(option - 1, option);
+  carrito.push(products.slice(option - 1, option)[0]);
   alert(
-    `Se añadió el producto ${carrito[0].name} con el precio de $ ${carrito[0].price}`
+    `Se añadió el producto ${carrito[0].name} con el precio de $ ${carrito[0].price}. El total de la compra es de` +
+      totalcarrito
   );
-  console.log(carrito);
 }
 
 function close() {
