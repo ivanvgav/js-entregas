@@ -46,6 +46,10 @@ const products = [
 //   { id: 94, name: "Armado de PC", price: 10000, responsable: "Laura", time: 2 },
 // ];
 
+let carritosee = "7 Ver Carrito \n";
+let carritoempty = "8 Vaciar Carrito \n";
+let addproduct = "9 Añadir producto \n";
+let exit = "99 para salir";
 let carrito = [];
 let carritoprice = 0;
 let totalcarrito = carrito.reduce((acc, carrito) => {
@@ -55,18 +59,28 @@ let totalcarrito = carrito.reduce((acc, carrito) => {
 let list = "";
 let menu = "";
 
+class Product {
+  constructor(id, name, price) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+  }
+}
+
 // Funciones
 
 function emptyCarrito() {
-  return carrito;
+  for (let i = 0; i <= carrito.length; i++) {
+    carrito.pop();
+  }
   alert("Se ha vaciado el carrito.");
 }
 
-function fullCarrito() {
-  if (carritoprice > 20000) {
-    return "Tu carrito se encuentra lleno";
-  }
-}
+// function fullCarrito() {
+//   if (carritoprice > 20000) {
+//     alert("Tu carrito se encuentra lleno");
+//   }
+// }
 
 function showProducts() {
   menu = "Seleccione el número del producto que desea comprar: \n";
@@ -80,62 +94,81 @@ function showProducts() {
       product.price.toString() +
       "\n";
   }
-  option = prompt((menu += "Escriba ESC para salir"));
-  if (option == "ESC" || option == "esc") {
+  option = prompt(menu + carritosee + carritoempty + addproduct + exit);
+  if (option == 99) {
     close();
+  } else if (option == 7) {
+    showCarrito();
+  } else if (option == 8) {
+    emptyCarrito();
+  } else if (option == 9) {
+    addProduct();
   } else {
     addCarrito(option);
   }
 }
-showProducts();
+let option;
+while (option != 99) {
+  showProducts();
+}
 
 function addCarrito(option) {
-  carrito.push(products.slice(option - 1, option)[0]);
+  carrito.unshift(products.slice(option - 1, option)[0]);
+  totalcarrito = carrito.reduce((acc, carrito) => {
+    return acc + carrito.price;
+  }, 0);
   alert(
     `Se añadió el producto ${carrito[0].name} con el precio de $ ${carrito[0].price}. El total de la compra es de` +
+      " " +
       totalcarrito
   );
+  return carrito;
 }
 
 function close() {
   alert("Muchas gracias por su tiempo, vuelva pronto.");
+  return false;
 }
 
-// function makeList1(obj) {
-//   idstring = obj.id.toString();
-//   pricestring = obj.price.toString();
-//   list += idstring + " " + obj.name + " " + pricestring + "\n";
-//   return list;
-// }
+function showCarrito() {
+  if (carrito == []) {
+    alert("Tu carrito está vacío");
+  } else {
+    carrito.forEach((producto) => {
+      alert(
+        `Su carrito está compuesto por: \n ${
+          producto.name
+        } de ${producto.price.toString()}`
+      );
+    });
+  }
+}
 
-// let searchCarritoProduct = carrito.find((product) => product.price === "Product Name")
-// Como joroca tengo que hacer para mandar una opción a esto
+function addProduct() {
+  id = Number(
+    prompt("Coloque el id del producto (Usar numeros de 10 para arriba)")
+  );
+  name = prompt("Coloque el nombre del producto");
+  price = Number(prompt("Añada el precio del producto"));
+  let z = new Product(id, name, price);
+  products.push(z);
+}
 
 // Clases
 
-class user {
-  constructor(name, password) {
-    this.name = name;
-    this.password = password;
-  }
-}
+// class user {
+//   constructor(name, password) {
+//     this.name = name;
+//     this.password = password;
+//   }
+// }
 
-class product {
-  constructor(id, name, price, stock, quantity) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.stock = stock;
-    this.quantity = quantity;
-  }
-}
-
-class service {
-  constructor(id, name, price, responsable, time) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.responsable = responsable;
-    this.time = time;
-  }
-}
+// class service {
+//   constructor(id, name, price, responsable, time) {
+//     this.id = id;
+//     this.name = name;
+//     this.price = price;
+//     this.responsable = responsable;
+//     this.time = time;
+//   }
+// }
