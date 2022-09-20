@@ -2,17 +2,17 @@
 
 const formulario = document.querySelector("form");
 
-const nameForm = document.querySelector("#formuNombre");
+const passForm = document.querySelector("#formuPass");
 const mailForm = document.querySelector("#formuMail");
 
 function checkForm(e) {
   e.preventDefault();
-  let givenName = document.createElement("div");
-  givenName.innerHTML = `<p><strong>Usuario Dado: ${nameForm.value}</p></strong>`;
+  let givenPass = document.createElement("div");
+  givenPass.innerHTML = `<p><strong>Constraseña Dada: ${passForm.value}</p></strong><p>Solo de prueba</p>`;
   let givenMail = document.createElement("div");
-  givenMail.innerHTML = `<p><em>Mail Dado: ${mail.value}</p></em>`;
-  document.body.appendChild(givenName);
+  givenMail.innerHTML = `<p><em>Mail Dado: ${mailForm.value}</em></p>`;
   document.body.appendChild(givenMail);
+  document.body.appendChild(givenPass);
 }
 
 formulario.addEventListener("submit", checkForm);
