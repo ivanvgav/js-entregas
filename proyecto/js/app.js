@@ -137,7 +137,7 @@ function emptyCarrito() {
   //clear products storage
   carrito = [];
   //render again
-  renderCarrito;
+  renderCarrito();
 }
 
 // DOMemptyBtn.addEventListener("click", emptyCarrito);
