@@ -19,15 +19,6 @@ baseDeDatos.push(new Product(2, "Teclado", 6000, 10, "./img/keyboard.webp"));
 baseDeDatos.push(new Product(3, "Monitor", 19000, 10, "./img/monitor.webp"));
 baseDeDatos.push(new Product(4, "Gabinete", 5000, 10, "./img/case.webp"));
 baseDeDatos.push(new Product(5, "Cargador", 3000, 10, "./img/charger.webp"));
-// class service {
-//   constructor(id, name, price, responsable, time) {
-//     this.id = id;
-//     this.name = name;
-//     this.price = price;
-//     this.responsable = responsable;
-//     this.time = time;
-//   }
-// }
 
 // DOM
 let section = document.getElementById("section-products");
@@ -38,6 +29,7 @@ const DOMcarro = document.querySelector("#carrito");
 const DOMemptyBtn = document.querySelector("#empty-button");
 const DOMbuyBtn = document.querySelector("#buy");
 const DOMtotal = document.querySelector("#total");
+const DOMbotonVaciar = document.querySelector("#empty-button");
 
 //Renderizar a partir de template
 function render(array) {
@@ -51,17 +43,16 @@ function render(array) {
     cardClonada.children[2].innerText = product.price;
     cardClonada.children[3].innerText = product.quantity;
     cardClonada.children[4].addEventListener("click", () => {
-      carrito.push(product);
-      renderCarrito();
+      addProductToCarrito(product);
     });
   });
 }
 
 // Armado de carrito
-function addProductToCarrito(product) {
-  carrito.push(product);
+function addProductToCarrito(evento) {
+  // carrito.push(product);
   //nodo carrito
-  // carrito.push(evento.target.getAtribute("mark"));
+  carrito.push(evento.id);
   localStorage.setItem("Products", JSON.stringify(carrito));
   //actualizar carrito
   renderCarrito();
@@ -79,13 +70,11 @@ function renderCarrito() {
       //there is only one id?
       return product.id === parseInt(item);
     });
-    console.log(myProduct);
     // count item repeated
     const numberUnityItem = carrito.reduce((total, itemId) => {
       // if the id are equal, add counter, else do not mantain
-      return itemId === item ? total++ : total;
+      return itemId === item ? (total += 1) : total;
     }, 0);
-    console.log(numberUnityItem);
     // carrito item nodes
     const myNode = document.createElement("li");
     myNode.classList.add("list-group-item", "text-right", "mx-2");
@@ -108,13 +97,15 @@ function renderCarrito() {
 
 // Eventos
 // event to delete carrito's item
-function deleteItemButton() {
+function deleteItemButton(evento) {
   // get id
   const id = evento.target.dataset.item;
   //delete products
+  console.log(id);
   carrito = carrito.filter((carritoId) => {
-    return carritoId !== id;
+    return carritoId != id;
   });
+  console.log(carrito);
   //render carrito
   renderCarrito();
 }
@@ -140,8 +131,7 @@ function emptyCarrito() {
   renderCarrito();
 }
 
-// DOMemptyBtn.addEventListener("click", emptyCarrito);
+DOMemptyBtn.addEventListener("click", emptyCarrito);
 
 //Initialice
 render(baseDeDatos);
-// renderCarrito();
