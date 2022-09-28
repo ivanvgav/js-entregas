@@ -1,0 +1,9 @@
+div.product-card {
+  width: 30%;
+  height: 20vh;
+  margin: 2%;
+
+  text-align: center;
+
+  background-color: rgb(193, 101, 14);
+}
