@@ -56,6 +56,20 @@ function addProductToCarrito(evento) {
   localStorage.setItem("Products", JSON.stringify(carrito));
   //actualizar carrito
   renderCarrito();
+  Toastify({
+    text: "Se agregó el producto al carrito",
+    duration: 1000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: false,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
 }
 
 function renderCarrito() {
@@ -101,11 +115,24 @@ function deleteItemButton(evento) {
   // get id
   const id = evento.target.dataset.item;
   //delete products
-  console.log(id);
   carrito = carrito.filter((carritoId) => {
     return carritoId != id;
   });
-  console.log(carrito);
+  //Add notification
+  Toastify({
+    text: "Se ha eliminado el producto",
+    duration: 1000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: false,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
   //render carrito
   renderCarrito();
 }
@@ -127,6 +154,21 @@ function calculateTotal() {
 function emptyCarrito() {
   //clear products storage
   carrito = [];
+  //notification empty carrito
+  Toastify({
+    text: "Se ha vaciado el carrito",
+    duration: 2000,
+    destination: "https://github.com/apvarun/toastify-js",
+    newWindow: true,
+    close: false,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
   //render again
   renderCarrito();
 }
