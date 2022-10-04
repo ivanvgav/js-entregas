@@ -66,7 +66,6 @@ function addProductToCarrito(evento) {
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
-      // background: "linear-gradient(to right, #00b09b, #96c93d)",
       background: "linear-gradient(220.55deg, #00B960 0%, #00552C 100%)",
     },
     onClick: function () {}, // Callback after click
@@ -130,7 +129,6 @@ function deleteItemButton(evento) {
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
-      // background: "linear-gradient(to right, #00b09b, #96c93d)",
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
     },
     onClick: function () {}, // Callback after click
@@ -168,7 +166,6 @@ function emptyCarrito() {
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
-      // background: "linear-gradient(to right, #00b09b, #96c93d)",
     },
     onClick: function () {}, // Callback after click
   }).showToast();
@@ -177,6 +174,11 @@ function emptyCarrito() {
 }
 
 DOMemptyBtn.addEventListener("click", emptyCarrito);
+
+//TODO: Añadir una promesa
+//La idea es generar un login y generar una promesa para que el usuario
+//se loguee y luego pueda comprar
+//Si no está logueado tiene que salir un sweet alert diciendole
 
 //Initialice
 render(baseDeDatos);
