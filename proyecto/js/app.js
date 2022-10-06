@@ -180,5 +180,10 @@ DOMemptyBtn.addEventListener("click", emptyCarrito);
 //se loguee y luego pueda comprar
 //Si no está logueado tiene que salir un sweet alert diciendole
 
+//TODO: Fecth
+//Utilizar la API de fakestoreapi para poder generar todos los productos
+//Analizar que se guarden los objetos en el carrito.
+//Modificar el carrito para que funcione con la API
+
 //Initialice
 render(baseDeDatos);
