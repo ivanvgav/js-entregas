@@ -1,6 +1,29 @@
 // Simulador de ecommerce
 // Creación de objetos
 
+//TODO: Fecth
+//Utilizar la API de fakestoreapi para poder generar todos los productos
+//Analizar que se guarden los objetos en el carrito.
+//Modificar el carrito para que funcione con la API
+fetch("https://fakestoreapi.com/products")
+  .then((res) => res.json())
+  .then((json) => console.log(json));
+fetch("https://fakestoreapi.com/products")
+  .then((res) => res.json())
+  .then((data) => {
+    data.forEach((product) => {
+      let cardClonada = card.cloneNode(true);
+      section.appendChild(cardClonada);
+      cardClonada.children[0].innerText = product.title;
+      cardClonada.children[1].src = product.image;
+      cardClonada.children[2].innerText = product.price;
+      cardClonada.children[3].innerText = product.rating.count;
+      cardClonada.children[4].addEventListener("click", () => {
+        addProductToCarrito(product);
+      });
+    });
+  });
+
 class Product {
   constructor(id, name, price, quantity, img) {
     this.id = id;
@@ -179,11 +202,6 @@ DOMemptyBtn.addEventListener("click", emptyCarrito);
 //La idea es generar un login y generar una promesa para que el usuario
 //se loguee y luego pueda comprar
 //Si no está logueado tiene que salir un sweet alert diciendole
-
-//TODO: Fecth
-//Utilizar la API de fakestoreapi para poder generar todos los productos
-//Analizar que se guarden los objetos en el carrito.
-//Modificar el carrito para que funcione con la API
 
 //Initialice
 render(baseDeDatos);
