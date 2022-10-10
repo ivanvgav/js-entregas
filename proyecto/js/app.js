@@ -7,9 +7,6 @@
 //Modificar el carrito para que funcione con la API
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
-  .then((json) => console.log(json));
-fetch("https://fakestoreapi.com/products")
-  .then((res) => res.json())
   .then((data) => {
     data.forEach((product) => {
       let cardClonada = card.cloneNode(true);
@@ -23,6 +20,7 @@ fetch("https://fakestoreapi.com/products")
       });
     });
   });
+
 
 class Product {
   constructor(id, name, price, quantity, img) {
@@ -91,7 +89,7 @@ function addProductToCarrito(evento) {
     style: {
       background: "linear-gradient(220.55deg, #00B960 0%, #00552C 100%)",
     },
-    onClick: function () {}, // Callback after click
+    onClick: function() { }, // Callback after click
   }).showToast();
 }
 
@@ -103,7 +101,7 @@ function renderCarrito() {
   //Nodes
   carritoWithoutDuplicates.forEach((item) => {
     //taking item needed from data base
-    const myProduct = baseDeDatos.filter((product) => {
+    const myProduct = data.filter((product) => {
       //there is only one id?
       return product.id === parseInt(item);
     });
@@ -154,7 +152,7 @@ function deleteItemButton(evento) {
     style: {
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
     },
-    onClick: function () {}, // Callback after click
+    onClick: function() { }, // Callback after click
   }).showToast();
   //render carrito
   renderCarrito();
@@ -165,7 +163,7 @@ function calculateTotal() {
   return carrito
     .reduce((total, item) => {
       //from each item return price
-      const myItem = baseDeDatos.filter((itemBaseDatos) => {
+      const myItem = data.filter((itemBaseDatos) => {
         return itemBaseDatos.id === parseInt(item);
       });
       return total + myItem[0].price;
@@ -190,7 +188,7 @@ function emptyCarrito() {
     style: {
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
     },
-    onClick: function () {}, // Callback after click
+    onClick: function() { }, // Callback after click
   }).showToast();
   //render again
   renderCarrito();
@@ -204,4 +202,4 @@ DOMemptyBtn.addEventListener("click", emptyCarrito);
 //Si no está logueado tiene que salir un sweet alert diciendole
 
 //Initialice
-render(baseDeDatos);
+// render(baseDeDatos);
