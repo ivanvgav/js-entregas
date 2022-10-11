@@ -5,6 +5,7 @@
 //Utilizar la API de fakestoreapi para poder generar todos los productos
 //Analizar que se guarden los objetos en el carrito.
 //Modificar el carrito para que funcione con la API
+let baseDeDatos = [];
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
   .then((data) => {
@@ -18,10 +19,11 @@ fetch("https://fakestoreapi.com/products")
       cardClonada.children[4].addEventListener("click", () => {
         addProductToCarrito(product);
       });
+      baseDeDatos.push(product);
     });
   });
 
-
+/*
 class Product {
   constructor(id, name, price, quantity, img) {
     this.id = id;
@@ -33,13 +35,13 @@ class Product {
 }
 
 // Pseudo Base de Datos
-let baseDeDatos = [];
 baseDeDatos.push(new Product(0, "Impresora", 9000, 10, "./img/printer.webp"));
 baseDeDatos.push(new Product(1, "Mouse", 1000, 10, "./img/mouse.webp"));
 baseDeDatos.push(new Product(2, "Teclado", 6000, 10, "./img/keyboard.webp"));
 baseDeDatos.push(new Product(3, "Monitor", 19000, 10, "./img/monitor.webp"));
 baseDeDatos.push(new Product(4, "Gabinete", 5000, 10, "./img/case.webp"));
 baseDeDatos.push(new Product(5, "Cargador", 3000, 10, "./img/charger.webp"));
+*/
 
 // DOM
 let section = document.getElementById("section-products");
@@ -52,6 +54,7 @@ const DOMbuyBtn = document.querySelector("#buy");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#empty-button");
 
+/*
 //Renderizar a partir de template
 function render(array) {
   // section.innerHTML = "";
@@ -68,6 +71,7 @@ function render(array) {
     });
   });
 }
+*/
 
 // Armado de carrito
 function addProductToCarrito(evento) {
@@ -101,7 +105,7 @@ function renderCarrito() {
   //Nodes
   carritoWithoutDuplicates.forEach((item) => {
     //taking item needed from data base
-    const myProduct = data.filter((product) => {
+    const myProduct = baseDeDatos.filter((product) => {
       //there is only one id?
       return product.id === parseInt(item);
     });
@@ -113,7 +117,7 @@ function renderCarrito() {
     // carrito item nodes
     const myNode = document.createElement("li");
     myNode.classList.add("list-group-item", "text-right", "mx-2");
-    myNode.textContent = `${numberUnityItem} x ${myProduct[0].name} - ${myProduct[0].price}`;
+    myNode.textContent = `${numberUnityItem} x ${myProduct[0].title} - ${myProduct[0].price}`;
     // // carrito item nodes
     // Delete buttom
     const deleteButton = document.createElement("button");
@@ -163,7 +167,7 @@ function calculateTotal() {
   return carrito
     .reduce((total, item) => {
       //from each item return price
-      const myItem = data.filter((itemBaseDatos) => {
+      const myItem = baseDeDatos.filter((itemBaseDatos) => {
         return itemBaseDatos.id === parseInt(item);
       });
       return total + myItem[0].price;
