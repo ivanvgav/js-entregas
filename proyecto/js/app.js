@@ -53,6 +53,7 @@ const DOMemptyBtn = document.querySelector("#empty-button");
 const DOMbuyBtn = document.querySelector("#buy");
 const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#empty-button");
+const DOMbotonComprar = document.querySelector("#buy-button");
 
 /*
 //Renderizar a partir de template
@@ -126,8 +127,14 @@ function renderCarrito() {
     deleteButton.style.marginLeft = "1rem";
     deleteButton.dataset.item = item;
     deleteButton.addEventListener("click", deleteItemButton);
+    const buyButton = document.createElement("button");
+    buyButton.classList.add("btn", "btn-primary", "mx-5");
+    buyButton.textContent = "Finalizar Compra";
+    buyButton.style.marginLeft = "1rem"
+    buyButton.addEventListener("click", buyItemButton);
     //Mix nodes
     myNode.appendChild(deleteButton);
+    myNode.appendChild(buyButton);
     DOMcarro.appendChild(myNode);
   });
   // render price amount in html
@@ -160,6 +167,29 @@ function deleteItemButton(evento) {
   }).showToast();
   //render carrito
   renderCarrito();
+}
+
+// Compra final
+function buyItemButton() {
+  //Call sweet alert with menssage 
+  Swal.fire({
+    title: '¿Quieres finalizar la compra?',
+    text: "Confirma para finalizar la compra",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar',
+    cancelButtonText: 'Cancelar',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        '¡Felicidades!',
+        'Tu compra ha sido registrada.',
+        'Pronto llegará a tu domicilio.'
+      )
+    }
+  })
 }
 
 // Total price with duplicate items
