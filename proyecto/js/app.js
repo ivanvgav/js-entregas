@@ -79,7 +79,7 @@ function addProductToCarrito(evento) {
   // carrito.push(product);
   //nodo carrito
   carrito.push(evento.id);
-  localStorage.setItem("Products", JSON.stringify(carrito));
+  localStorage.setItem("Products", JSON.stringify(evento));
   //actualizar carrito
   renderCarrito();
   Toastify({
