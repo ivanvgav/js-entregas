@@ -1,4 +1,4 @@
-// Simulador de ecommerce
+// Simulador de e-commerce
 // Creación de objetos
 
 //TODO: Fecth
@@ -94,7 +94,7 @@ function addProductToCarrito(evento) {
     style: {
       background: "linear-gradient(220.55deg, #00B960 0%, #00552C 100%)",
     },
-    onClick: function() { }, // Callback after click
+    onClick: function () {}, // Callback after click
   }).showToast();
 }
 
@@ -127,14 +127,8 @@ function renderCarrito() {
     deleteButton.style.marginLeft = "1rem";
     deleteButton.dataset.item = item;
     deleteButton.addEventListener("click", deleteItemButton);
-    const buyButton = document.createElement("button");
-    buyButton.classList.add("btn", "btn-primary", "mx-5");
-    buyButton.textContent = "Finalizar Compra";
-    buyButton.style.marginLeft = "1rem"
-    buyButton.addEventListener("click", buyItemButton);
     //Mix nodes
     myNode.appendChild(deleteButton);
-    myNode.appendChild(buyButton);
     DOMcarro.appendChild(myNode);
   });
   // render price amount in html
@@ -163,7 +157,7 @@ function deleteItemButton(evento) {
     style: {
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
     },
-    onClick: function() { }, // Callback after click
+    onClick: function () {}, // Callback after click
   }).showToast();
   //render carrito
   renderCarrito();
@@ -171,25 +165,26 @@ function deleteItemButton(evento) {
 
 // Compra final
 function buyItemButton() {
-  //Call sweet alert with menssage 
+  //Call sweet alert with message
   Swal.fire({
-    title: '¿Quieres finalizar la compra?',
+    title: "¿Quieres finalizar la compra?",
     text: "Confirma para finalizar la compra",
-    icon: 'warning',
+    icon: "warning",
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Confirmar',
-    cancelButtonText: 'Cancelar',
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Confirmar",
+    cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire(
-        '¡Felicidades!',
-        'Tu compra ha sido registrada.',
-        'Pronto llegará a tu domicilio.'
-      )
+        "¡Felicidades!",
+        "Tu compra ha sido registrada.",
+        "Pronto llegará a tu domicilio."
+      );
+      emptyAfterBuy();
     }
-  })
+  });
 }
 
 // Total price with duplicate items
@@ -222,18 +217,61 @@ function emptyCarrito() {
     style: {
       background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
     },
-    onClick: function() { }, // Callback after click
+    onClick: function () {}, // Callback after click
   }).showToast();
   //render again
   renderCarrito();
 }
 
-DOMemptyBtn.addEventListener("click", emptyCarrito);
+function emptyAfterBuy(){
+  carrito = [];
+  renderCarrito();
+}
 
+DOMemptyBtn.addEventListener("click", emptyCarrito);
+DOMbotonComprar.addEventListener("click", buyItemButton);
 //TODO: Añadir una promesa
 //La idea es generar un login y generar una promesa para que el usuario
 //se loguee y luego pueda comprar
 //Si no está logueado tiene que salir un sweet alert diciendole
+/*
+//Alerts for users and passwords
+function userLogin(user, passwd) {
+  let user;
+  let passwd;
 
-//Initialice
-// render(baseDeDatos);
+  !user
+    ? Toastify({
+        text: "Se requiere usuario",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast()
+    : console.log("Hay usuario");
+
+  !passwd
+    ? Toastify({
+        text: "Se requiere contraseña",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast()
+    : console.log("Contraseña exitosa");
+}
+*/
