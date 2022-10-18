@@ -48,6 +48,7 @@ let section = document.getElementById("section-products");
 let temp = document.querySelector("template");
 let card = temp.content.querySelector("div");
 let carrito = [];
+let toJson = [];
 const DOMcarro = document.querySelector("#carrito");
 const DOMemptyBtn = document.querySelector("#empty-button");
 const DOMbuyBtn = document.querySelector("#buy");
@@ -79,7 +80,8 @@ function addProductToCarrito(evento) {
   // carrito.push(product);
   //nodo carrito
   carrito.push(evento.id);
-  localStorage.setItem("Products", JSON.stringify(evento));
+  toJson.push(evento);
+  localStorage.setItem("Products", JSON.stringify(toJson));
   //actualizar carrito
   renderCarrito();
   Toastify({
@@ -98,6 +100,7 @@ function addProductToCarrito(evento) {
   }).showToast();
 }
 
+// Render carrito
 function renderCarrito() {
   //empty html
   DOMcarro.textContent = "";
