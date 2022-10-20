@@ -3,8 +3,6 @@
 
 //TODO: Fecth
 //Utilizar la API de fakestoreapi para poder generar todos los productos
-//Analizar que se guarden los objetos en el carrito.
-//Modificar el carrito para que funcione con la API
 let baseDeDatos = [];
 fetch("https://fakestoreapi.com/products")
   .then((res) => res.json())
@@ -23,25 +21,6 @@ fetch("https://fakestoreapi.com/products")
     });
   });
 
-/*
-class Product {
-  constructor(id, name, price, quantity, img) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-    this.img = img;
-  }
-}
-
-// Pseudo Base de Datos
-baseDeDatos.push(new Product(0, "Impresora", 9000, 10, "./img/printer.webp"));
-baseDeDatos.push(new Product(1, "Mouse", 1000, 10, "./img/mouse.webp"));
-baseDeDatos.push(new Product(2, "Teclado", 6000, 10, "./img/keyboard.webp"));
-baseDeDatos.push(new Product(3, "Monitor", 19000, 10, "./img/monitor.webp"));
-baseDeDatos.push(new Product(4, "Gabinete", 5000, 10, "./img/case.webp"));
-baseDeDatos.push(new Product(5, "Cargador", 3000, 10, "./img/charger.webp"));
-*/
 
 // DOM
 let section = document.getElementById("section-products");
@@ -56,28 +35,8 @@ const DOMtotal = document.querySelector("#total");
 const DOMbotonVaciar = document.querySelector("#empty-button");
 const DOMbotonComprar = document.querySelector("#buy-button");
 
-/*
-//Renderizar a partir de template
-function render(array) {
-  // section.innerHTML = "";
-
-  array.forEach((product) => {
-    let cardClonada = card.cloneNode(true);
-    section.appendChild(cardClonada);
-    cardClonada.children[0].innerText = product.name;
-    cardClonada.children[1].src = product.img;
-    cardClonada.children[2].innerText = product.price;
-    cardClonada.children[3].innerText = product.quantity;
-    cardClonada.children[4].addEventListener("click", () => {
-      addProductToCarrito(product);
-    });
-  });
-}
-*/
-
 // Armado de carrito
 function addProductToCarrito(evento) {
-  // carrito.push(product);
   //nodo carrito
   carrito.push(evento.id);
   toJson.push(evento);
@@ -102,15 +61,10 @@ function addProductToCarrito(evento) {
 
 // Render carrito
 function renderCarrito() {
-  //empty html
   DOMcarro.textContent = "";
-  //delete duplicates
   const carritoWithoutDuplicates = [...new Set(carrito)];
-  //Nodes
   carritoWithoutDuplicates.forEach((item) => {
-    //taking item needed from data base
     const myProduct = baseDeDatos.filter((product) => {
-      //there is only one id?
       return product.id === parseInt(item);
     });
     // count item repeated
@@ -227,54 +181,11 @@ function emptyCarrito() {
 }
 
 function emptyAfterBuy(){
+  //reset carrito
   carrito = [];
+  //render again
   renderCarrito();
 }
 
 DOMemptyBtn.addEventListener("click", emptyCarrito);
 DOMbotonComprar.addEventListener("click", buyItemButton);
-//TODO: Añadir una promesa
-//La idea es generar un login y generar una promesa para que el usuario
-//se loguee y luego pueda comprar
-//Si no está logueado tiene que salir un sweet alert diciendole
-/*
-//Alerts for users and passwords
-function userLogin(user, passwd) {
-  let user;
-  let passwd;
-
-  !user
-    ? Toastify({
-        text: "Se requiere usuario",
-        duration: 2000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: false,
-        gravity: "top", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
-        },
-        onClick: function () {}, // Callback after click
-      }).showToast()
-    : console.log("Hay usuario");
-
-  !passwd
-    ? Toastify({
-        text: "Se requiere contraseña",
-        duration: 2000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: false,
-        gravity: "top", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(220.55deg, #FF896D 0%, #D02020 100%)",
-        },
-        onClick: function () {}, // Callback after click
-      }).showToast()
-    : console.log("Contraseña exitosa");
-}
-*/
