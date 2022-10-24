@@ -1,5 +1,4 @@
 // Simulador de e-commerce
-// Creación de objetos
 
 //TODO: Fecth
 //Utilizar la API de fakestoreapi para poder generar todos los productos
